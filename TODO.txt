@@ -1,0 +1,2 @@
+* make possible to dispose the view and the controller at a later time(postpone execution of the above code) - because of the hide animation;
+when a view starts hide animation it must became inactive(interactive = false);
