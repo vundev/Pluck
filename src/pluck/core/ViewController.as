@@ -14,7 +14,6 @@ package pluck.core
 	{
 		protected var _model:Object
 		private var _name:String
-		//TODO: make possible to dispose controller map
 		private static var _controllerMap:Object = { }
 		private static var _notificationMap:NotificationMap = new NotificationMap()
 		private var _children:Vector.<ViewController> = new Vector.<ViewController>()
@@ -94,7 +93,6 @@ package pluck.core
 		
 		public function removeChildViewController(child:ViewController):void
 		{
-			trace('remove child ' + child, hasChildViewController(child))
 			if (hasChildViewController(child)) {
 				while (child.children.length > 0) 
 					child.removeChildViewController(child.children[0])
