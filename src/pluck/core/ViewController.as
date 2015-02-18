@@ -36,14 +36,31 @@ package pluck.core
 		
 		public function handleNotification(notification:Notification):void { }
 		
-		public function broadcast(type:String, body:Object = null):void
+		public function broadcast(type:String, body:Object = null, keepOrder:Boolean = false):void
 		{
 			const notification:Notification = new Notification(type, body)
-			// use copy of the map to prevent from for-each problems just in case when a controller is unregistered; 
-			// must not delete keys while iterrating through an associative array;
-			const controllerMap:Object = ClassUtils.clone(_controllerMap, false)
-			for each (var item:ViewController in controllerMap) 
-				item.handleNotification(notification)
+			if (keepOrder)
+			{
+				for each (var item:ViewController in _controllerMap) 
+					if (item._isRootController) 
+						broadcastFrom(item, notification)
+			}
+			else
+			{
+				// use copy of the map to prevent from for-each problems just in case when a controller is unregistered; 
+				// must not delete keys while iterrating through an associative array;
+				const controllerMap:Object = ClassUtils.clone(_controllerMap, false)
+				for each (item in controllerMap) 
+					item.handleNotification(notification)
+			}
+		}
+		
+		private function broadcastFrom(root:ViewController, notification:Notification):void
+		{
+			root.handleNotification(notification)
+			const length:uint = root.children.length
+			for (var i:int = 0; i < length; i++) 
+				broadcastFrom(root.children[i], notification)
 		}
 		
 		public function onRegister():void { }
