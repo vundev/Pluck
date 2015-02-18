@@ -2,6 +2,8 @@ package pluck.core
 {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
+	import pluck.utils.ArrayUtils
+	
 	/**
 	 * ...
 	 * @author Atanas Vasilev at avant.vasilev@gmail.com
@@ -17,7 +19,8 @@ package pluck.core
 		
 		public function append(...args):void
 		{
-			for each (var item:DisplayObject in args) 
+			const list:Array = ArrayUtils.flatten(args)
+			for each (var item:DisplayObject in list) 
 				addChild(item)
 		}
 		

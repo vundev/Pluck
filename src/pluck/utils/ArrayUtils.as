@@ -60,6 +60,18 @@ package pluck.utils
 		{
 			return collection[collection.length - 1];
 		}
+		
+		static public function flatten(array:Array):Array 
+		{
+			const flattened:Array = new Array()
+			const length:uint = array.length
+			for (var i:int = 0; i < length; i++) 
+			{
+				if (array[i] is Array) flattened.concat(flatten(array[i]))
+				else flattened.push(array[i])
+			}
+			return flattened
+		}
 	}
 
 }
