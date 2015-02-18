@@ -35,41 +35,16 @@ package pluck.core
 		
 		public function handleNotification(notification:Notification):void { }
 		
-		public function broadcast(type:String, body:Object = null, keepOrder:Boolean = false):void
+		public function broadcast(type:String, body:Object = null):void
 		{
 			const notification:Notification = new Notification(type, body)
-			if (keepOrder)
-			{
-				// Must retain a list of root controllers before the start of the broadcast,
-				// because a root controller may unregister itself before broadcast completion.
-				const rootControllers:Vector.<ViewController> = new Vector.<ViewController>()
-				for each (var item:ViewController in _controllerMap) 
-					if (item._isRootController) 
-						rootControllers.push(item)
-						
-				const length:uint = rootControllers.length
-				for (var i:int = 0; i < length; i++) 
-					broadcastFrom(rootControllers[i], notification)
-			}
-			else
-			{
-				// use copy of the map to prevent from for-each problems just in case when a controller is unregistered; 
-				// must not delete keys while iterrating through an associative array;
-				const controllerMap:Object = ClassUtils.clone(_controllerMap, false)
-				for each (item in controllerMap) 
-					item.handleNotification(notification)
-			}
+			// use copy of the map to prevent from for-each problems just in case when a controller is unregistered; 
+			// must not delete keys while iterrating through an associative array;
+			const controllerMap:Object = ClassUtils.clone(_controllerMap, false)
+			for each (item in controllerMap) 
+				item.handleNotification(notification)
 		}
-		
-		private function broadcastFrom(root:ViewController, notification:Notification):void
-		{
-			const children:Vector.<ViewController> = root.children.concat()
-			root.handleNotification(notification)
-			const length:uint = children.length
-			for (var i:int = 0; i < length; i++) 
-				broadcastFrom(children[i], notification)
-		}
-		
+	
 		public function onRegister():void { }
 		
 		public function onUnregister():void { }
