@@ -20,8 +20,9 @@ package pluck.core
 		public function append(...args):void
 		{
 			const list:Array = ArrayUtils.flatten(args)
-			for each (var item:DisplayObject in list) 
-				addChild(item)
+			const length:uint = list.length
+			for (var i:int = 0; i < length; i++) 
+				addChild(list[i])
 		}
 		
 		public function get interactive():Boolean { return _interactive; }
