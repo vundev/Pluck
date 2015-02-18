@@ -41,7 +41,7 @@ package pluck.core
 			// use copy of the map to prevent from for-each problems just in case when a controller is unregistered; 
 			// must not delete keys while iterrating through an associative array;
 			const controllerMap:Object = ClassUtils.clone(_controllerMap, false)
-			for each (item in controllerMap) 
+			for each (var item:ViewController in controllerMap) 
 				item.handleNotification(notification)
 		}
 	
