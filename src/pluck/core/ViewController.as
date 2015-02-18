@@ -41,9 +41,16 @@ package pluck.core
 			const notification:Notification = new Notification(type, body)
 			if (keepOrder)
 			{
+				// Must retain a list of root controllers before the start of the broadcast,
+				// because a root controller may unregister itself before broadcast completion.
+				const rootControllers:Vector.<ViewController> = new Vector.<ViewController>()
 				for each (var item:ViewController in _controllerMap) 
 					if (item._isRootController) 
-						broadcastFrom(item, notification)
+						rootControllers.push(item)
+						
+				const length:uint = rootControllers.length
+				for (var i:int = 0; i < length; i++) 
+					broadcastFrom(rootControllers[i], notification)
 			}
 			else
 			{
@@ -57,10 +64,11 @@ package pluck.core
 		
 		private function broadcastFrom(root:ViewController, notification:Notification):void
 		{
+			const children:Vector.<ViewController> = root.children.concat()
 			root.handleNotification(notification)
-			const length:uint = root.children.length
+			const length:uint = children.length
 			for (var i:int = 0; i < length; i++) 
-				broadcastFrom(root.children[i], notification)
+				broadcastFrom(children[i], notification)
 		}
 		
 		public function onRegister():void { }
