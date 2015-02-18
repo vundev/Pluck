@@ -73,7 +73,7 @@ package pluck.core
 			if (hasChildViewController(child)) {
 				while (child.children.length > 0) 
 					child.removeChildViewController(child.children[0])
-				// removes the child from the tree structure starting from the leaves
+				// removes the child from the tree structure starting from the leafs
 				_children.splice(_children.indexOf(child), 1)
 				child._parent = null
 				// removes the child from the map
