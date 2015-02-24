@@ -72,6 +72,16 @@ package pluck.utils
 			}
 			return flattened
 		}
+		
+		public static function length(array:*):uint
+		{
+			if (array is Array)
+				return array.length
+			var length:uint
+			for each (var item:* in array) 
+				length++
+			return length
+		}
 	}
 
 }

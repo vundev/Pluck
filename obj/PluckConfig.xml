@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'18.2.2015 г.'</value>
+      <value>'20.2.2015 г.'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -37,9 +37,11 @@
       <path-element>C:\Flash svn\dev\libs</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
+    <external-library-path append="true">
+      <path-element>C:\Flash svn\dev\libs\greensock.swc</path-element>
+    </external-library-path>
     <library-path append="true">
       <path-element>C:\Flash svn\dev\projects\Pluck\lib\asunit4\AsUnit-4.2.3.pre.swc</path-element>
-      <path-element>C:\Flash svn\dev\libs\greensock.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
