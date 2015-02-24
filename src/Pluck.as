@@ -11,7 +11,6 @@ package {
 	{
 		public var events:Object = { }
 		public var exitButton:Sprite = new Sprite()
-		private var _rootController:RootController
 		
         public function Pluck() 
 		{
@@ -19,8 +18,8 @@ package {
 			
 			events[getQualifiedClassName(GameEvent)] = { event:GameEvent, types:[GameEvent.HIDE_GAME] }
 			
-			_rootController = new RootController(this).registerAsRootViewController() as RootController;
-			_rootController.sendNotification(RootController.CHANGE, { page:'screen0' } )
+			ViewController.root = new RootController(this)
+			ViewController.root.sendNotification(RootController.CHANGE, { page:'screen0' } )
 			
 			exitButton.graphics.beginFill(0x000000)
 			exitButton.graphics.drawRect(0, 0, 88, 88)
@@ -38,8 +37,7 @@ package {
 		override public function dispose():void 
 		{
 			super.dispose();
-			_rootController.unregisterThisRootViewController()
-			_rootController = null
+			ViewController.disposeRootController()
 		}
     }
 }

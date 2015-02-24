@@ -16,10 +16,10 @@ package pluck.core
 		private var _name:String
 		private static var _controllerMap:Object = { }
 		private static var _notificationMap:NotificationMap = new NotificationMap()
+		private static var _root:ViewController
 		private var _children:Vector.<ViewController> = new Vector.<ViewController>()
 		private var _parent:ViewController
 		private var _autoDispose:Boolean = true
-		private var _isRootController:Boolean
 		
 		public function ViewController(view:View = null, model:Object = null, name:String = null)
 		{
@@ -98,31 +98,17 @@ package pluck.core
 			return _controllerMap[name]
 		}
 		
-		/** Make possible to have more than one root controllers for diff kinds of display lists(native, stage3d, in js - native, canvas). **/
-		public function registerAsRootViewController():ViewController
+		public static function disposeRootController():void
 		{
-			if (!this._isRootController) {
-				this._isRootController = true;
-				// register root controller for handling notifications
-				_controllerMap[this.name] = this
-				_notificationMap.register(this)
-				this.onRegister()
-			}
-			return this
-		}
-
-		public function unregisterThisRootViewController():void
-		{
-			if (this._isRootController) {
-				while (this.children.length > 0)
-					this.removeChildViewController(this.children[0])
-				delete _controllerMap[this.name];
-				_notificationMap.unregister(this)
-				this.onUnregister()
-				if (this.autoDispose)
-					this.destroy()
-				else _view.interactive = false
-			}
+			while (_root.children.length > 0)
+				_root.removeChildViewController(_root.children[0])
+			delete _controllerMap[_root.name];
+			_notificationMap.unregister(_root)
+			_root.onUnregister()
+			if (_root.autoDispose)
+				_root.destroy()
+			else _root._view.interactive = false
+			_root = null
 		}
 		
 		/**
@@ -140,6 +126,18 @@ package pluck.core
 			_view = null
 			_model = null
 		}
+		
+		public static function set root(value:ViewController):void 
+		{
+			if (_root) throw new Error('Root controller has been already set!')
+			_root = value
+			// register root controller for handling notifications
+			_controllerMap[_root.name] = _root
+			_notificationMap.register(_root)
+			_root.onRegister()
+		}
+		
+		public static function get root():ViewController { return _root; }
 		
 		public function get interests():Array { return [] }
 		
