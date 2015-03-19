@@ -55,10 +55,11 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="lib\asunit4\AsUnit-4.2.3.pre.swc" />
+    <element path="..\..\libs\greensock.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
-    <element path="..\..\libs\greensock.swc" />
+    <!-- example: <element path="..." /> -->
   </externalLibraryPaths>
   <!-- Runtime Shared Libraries -->
   <rslPaths>
