@@ -22,7 +22,7 @@ package api.controllers
 		override public function onRegister():void 
 		{
 			_model = new ColorPickerModel()
-			_view = new ColorPicker(_model.objectID)
+			_view = new ColorPicker(this.model.id)
 			
 			_view.y = 100;
 			_view.x = -88;
@@ -50,7 +50,7 @@ package api.controllers
 		
 		public function toString():String
 		{
-			return '[ColorPickerController id=' + model.objectID + ']';
+			return '[ColorPickerController id=' + model.id + ']';
 		}
 		
 		public function get model():ColorPickerModel { return _model as ColorPickerModel; }

@@ -7,13 +7,14 @@ package api.models
 	public class ColorPickerModel 
 	{
 		private static var _objectID:int
+		private var _id:int
 		
 		public function ColorPickerModel()
 		{
-			_objectID++
+			_id = _objectID++
 		}
 		
-		public function get objectID():int { return _objectID; }
+		public function get id():int { return _id; }
 	}
 
 }
