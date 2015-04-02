@@ -98,6 +98,10 @@ package pluck.core
 			return _controllerMap[name]
 		}
 		
+		public function getControllerByClass(c:Class, sufix:String = null):ViewController { 
+			return getController(getQualifiedClassName(c) + sufix || '')
+		}
+		
 		public static function disposeRootController():void
 		{
 			while (_root.children.length > 0)

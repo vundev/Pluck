@@ -23,7 +23,7 @@ package api.controllers
 		
 		private function onClickNavigationItem(event:MouseEvent):void
 		{
-			sendNotification(RootController.CHANGE, { page:'screen' + event.target.name } )
+			sendNotification(RootController.START_PAGE_CHANGE, { page:'screen' + event.target.name } )
 		}
 		
 		override public function dispose():void 

@@ -18,6 +18,7 @@
     <class path="src" />
     <class path="test" />
     <class path="..\..\libs" />
+    <class path="..\Gamy\src" />
   </classpaths>
   <!-- Build options -->
   <build>
