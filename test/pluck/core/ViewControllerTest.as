@@ -98,6 +98,17 @@ package pluck.core  {
 			instance.sendNotification(TestNotificationsViewController.NOTIFICATION_TYPE)
 			assertTrue('notification is received successfully', recipient.model.notificationAccepted)
 		}
+		
+		[Test]
+		public function sendNoneExistingNotification():void
+		{
+			try {
+				instance.sendNotification('noneExisting')
+			}
+			catch (error:Error) {
+				throw new Error('Sending none existing notification throws an error!')
+			}
+		}
     }
 }
 
