@@ -22,6 +22,7 @@ package {
 			events[getQualifiedClassName(GameEvent)] = { event:GameEvent, types:[GameEvent.HIDE_GAME] }
 			
 			ViewController.root = new RootController(this)
+			ViewController.root.sendNotification('ebre')
 				
 			exitButton.graphics.beginFill(0x000000)
 			exitButton.graphics.drawRect(0, 0, 88, 88)

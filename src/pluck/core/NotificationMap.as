@@ -45,10 +45,13 @@ package pluck.core
 		
 		public function notify(notification:Notification):void
 		{
-			const recipients:Vector.<ViewController> = this.getRecipients(notification.type).concat()
-			const length:uint = recipients.length
-			for (var i:int = 0; i < length; i++) 
-				recipients[i].handleNotification(notification)
+			var recipients:Vector.<ViewController> = this.getRecipients(notification.type)
+			if (recipients) {
+				recipients = recipients.concat()
+				const length:uint = recipients.length
+				for (var i:int = 0; i < length; i++) 
+					recipients[i].handleNotification(notification)
+			}			
 		}
 		
 		private function getRecipients(notificationType:String):Vector.<ViewController>

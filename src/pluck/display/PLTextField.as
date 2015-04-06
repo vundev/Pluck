@@ -15,6 +15,7 @@ package pluck.display
 	{
 		private var _rootModel:RootModel 
 		private var _mText:XMLList
+		public var onLanguageChangeCompletion:Function
 		
 		public function PLTextField() 
 		{
@@ -25,16 +26,18 @@ package pluck.display
 			catch (error:Error) {/*do nothing*/}			
 		}
 		
-		private function onLanguageChange(event:LanguageEvent):void
+		private function onLanguageChange(event:LanguageEvent = null):void
 		{
-			text = translate(_mText, event.lang)
+			text = translate(_mText, _rootModel.lang)
+			if (this.onLanguageChangeCompletion != null)
+				onLanguageChangeCompletion.call(this, _rootModel.lang)
 		}
 		
 		public function set mText(value:*):void 
 		{
 			if (value is XMLList && _rootModel) {
 				_mText = value;		
-				text = translate(_mText, _rootModel.lang)				
+				onLanguageChange()			
 			}
 			else text = value
 		}

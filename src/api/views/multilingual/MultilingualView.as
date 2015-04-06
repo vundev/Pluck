@@ -25,12 +25,23 @@ package api.views.multilingual
 				item.name = langs[i];
 				langButtons.addChild(item)
 				item.x = i * (item.width + 2);				
-			}
+			}			
 			
-			_label.x = langButtons.width + 2;
+			const labelBackground:Sprite = new Sprite()
+			labelBackground.graphics.beginFill(0xff0000)
+			labelBackground.graphics.drawRect(0, 0, 100, 30)
+			labelBackground.graphics.endFill()			
+			labelBackground.x = langButtons.width + 2
+			
+			_label.border = true;
+			_label.autoSize = 'left';
+			_label.onLanguageChangeCompletion = function(lang:String):void {
+				_label.x = (labelBackground.width - _label.width) / 2 + labelBackground.x;
+				_label.y = (labelBackground.height - _label.height) / 2 + labelBackground.y;
+			}
 			_label.mText = text
 			
-			append(langButtons, _label)
+			append(langButtons, labelBackground, _label)
 		}
 		
 		override public function dispose():void 

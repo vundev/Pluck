@@ -35,6 +35,7 @@ package pluck.core
 			if (_lang != value) {
 				_lang = value;
 				dispatchEvent(new LanguageEvent(LanguageEvent.CHANGE, value))
+				dispatchEvent(new LanguageEvent(LanguageEvent.CHANGE_COMPLETE, value))
 			}
 		}
 		

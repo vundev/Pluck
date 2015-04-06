@@ -9,6 +9,7 @@ package pluck.events
 	public class LanguageEvent extends Event 
 	{
 		public static const CHANGE:String = 'onLanguageChange';
+		public static const CHANGE_COMPLETE:String = 'onLanguageChangeComplete';
 		
 		public var lang:String
 		
