@@ -23,6 +23,8 @@ require 'asunit4'
 # ENV['FCSH_PKG_VERSION'] = '1.0.14.pre'
 # ENV['FCSH_PORT']        = 12321
 
+$framework_version = '\'1.1.0\''
+
 ##############################
 # Debug
 
@@ -31,6 +33,7 @@ mxmlc "bin/Pluck-debug.swf" do |t|
   t.input = "src/Pluck.as"
   t.static_link_runtime_shared_libraries = true
   t.debug = true
+  t.define_conditional << 'CONFIG::debug,true -define=CONFIG::version,' + $framework_version
 end
 
 desc "Compile and run the debug swf"
@@ -47,6 +50,7 @@ mxmlc "bin/Pluck-test.swf" => :asunit4 do |t|
   t.static_link_runtime_shared_libraries = true
   t.source_path << 'test'
   t.debug = true
+  t.define_conditional << 'CONFIG::debug,true -define=CONFIG::version,' + $framework_version
 end
 
 desc "Compile and run the test swf"
@@ -59,6 +63,7 @@ compc "bin/Pluck.swc" do |t|
   t.static_link_runtime_shared_libraries = true
   t.source_path << 'src'
   t.include_sources << 'src/pluck/'
+  t.define_conditional << 'CONFIG::debug,false -define=CONFIG::version,' + $framework_version
 end
 
 desc "Compile the SWC file"
@@ -71,6 +76,7 @@ desc "Generate documentation at doc/"
 asdoc 'doc' do |t|
   t.doc_sources << "src"
   t.exclude_sources << "src/PluckRunner.as"
+  t.define_conditional << 'CONFIG::debug,false -define=CONFIG::version,' + $framework_version
 end
 
 ##############################

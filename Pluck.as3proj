@@ -46,7 +46,7 @@
     <option loadExterns="" />
     <option staticLinkRSL="True" />
     <option additional="" />
-    <option compilerConstants="" />
+    <option compilerConstants="CONFIG::version, '1.1.0'" />
     <option minorVersion="" />
   </build>
   <!-- SWC Include Libraries -->

@@ -9,6 +9,7 @@ package {
 	import flash.utils.getQualifiedClassName
 	import api.events.GameEvent
 	import com.greensock.loading.LoaderMax
+	import pluck.core.RootModel
 
     public class Pluck extends View 
 	{
@@ -17,7 +18,7 @@ package {
 		
         public function Pluck() 
 		{
-            trace(">> Pluck Instantiated!");
+            trace(">> Pluck Instantiated!", RootModel.VERSION);
 			
 			events[getQualifiedClassName(GameEvent)] = { event:GameEvent, types:[GameEvent.HIDE_GAME] }
 			

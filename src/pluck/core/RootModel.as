@@ -10,6 +10,9 @@ package pluck.core
 	 */
 	public class RootModel extends EventDispatcher
 	{
+		/** Framework version **/
+		public static const VERSION:String = CONFIG::version;
+		
 		private var _lang:String = 'en';
 		private var _currentPage:String
 		private var _currentParameters:Hash = new Hash()
