@@ -4,6 +4,7 @@ package api.controllers
 	import flash.events.MouseEvent;
 	import pluck.core.ViewController;
 	import com.greensock.loading.LoaderMax
+	import api.models.AppModel
 	
 	/**
 	 * ...
@@ -19,7 +20,7 @@ package api.controllers
 		
 		override public function onRegister():void 
 		{
-			_view = new MultilingualView(LoaderMax.getContent('content').multilingual.text, RootController(ViewController.root).model.langs);
+			_view = new MultilingualView(LoaderMax.getContent(AppModel.CONTENT_LOADER_NAME).multilingual.text, RootController(ViewController.root).model.langs);
 			view.langButtons.addEventListener(MouseEvent.CLICK, onChangeLanguage)
 			checkForInitialAttrs()
 		}

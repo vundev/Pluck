@@ -16,7 +16,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'21.4.2015 г.'</value>
+      <value>'19.6.2015 г.'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -30,21 +30,25 @@
       <name>CONFIG::desktop</name>
       <value>false</value>
     </define>
+    <define append="true">
+      <name>CONFIG::version</name>
+      <value> '1.1.0'</value>
+    </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>C:\Flash svn\dev\projects\Pluck\src</path-element>
-      <path-element>C:\Flash svn\dev\projects\Pluck\test</path-element>
-      <path-element>C:\Flash svn\dev\libs</path-element>
-      <path-element>C:\Flash svn\dev\projects\Gamy\src</path-element>
+      <path-element>C:\dev\projects\Pluck\src</path-element>
+      <path-element>C:\dev\projects\Pluck\test</path-element>
+      <path-element>C:\dev\libs</path-element>
+      <path-element>C:\dev\projects\Gamy\src</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
-      <path-element>C:\Flash svn\dev\projects\Pluck\lib\asunit4\AsUnit-4.2.3.pre.swc</path-element>
-      <path-element>C:\Flash svn\dev\libs\greensock.swc</path-element>
+      <path-element>C:\dev\projects\Pluck\lib\asunit4\AsUnit-4.2.3.pre.swc</path-element>
+      <path-element>C:\dev\libs\greensock.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
-    <path-element>C:\Flash svn\dev\projects\Pluck\src\Pluck.as</path-element>
+    <path-element>C:\dev\projects\Pluck\src\Pluck.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>

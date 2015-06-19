@@ -10,7 +10,7 @@ package pluck.core
 	 * ...
 	 * @author Atanas Vasilev at avant.vasilev@gmail.com
 	 */
-	public class ViewController extends DisplayObjectController
+	public class ViewController extends DisplayObjectController implements INotifier
 	{
 		protected var _model:Object
 		private var _name:String
