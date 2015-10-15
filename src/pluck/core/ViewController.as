@@ -109,9 +109,7 @@ package pluck.core
 			delete _controllerMap[_root.name];
 			_notificationMap.unregister(_root)
 			_root.onUnregister()
-			if (_root.autoDispose)
-				_root.destroy()
-			else _root._view.interactive = false
+			_root.dispose()
 			_root = null
 		}
 		
@@ -122,9 +120,8 @@ package pluck.core
 		protected final function destroy():void
 		{
 			// removes the view from the display list
-			if(_view.parent.contains(_view))
-				_view.parent.removeChild(_view)
-			// dispose the view and the controller
+			if(_view.parent && _view.parent.contains(_view))
+				_view.parent.removeChild(_view)		
 			_view.dispose()
 			dispose()
 			_view = null

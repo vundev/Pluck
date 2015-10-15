@@ -10,7 +10,7 @@ package api.events
 	{
 		public static const HIDE_GAME:String = 'HideGame';
 		
-		public function GameEvent(type:String,denomination:Object=null, bubbles:Boolean=false, cancelable:Boolean=false) 
+		public function GameEvent(type:String, denomination:Object = null, bubbles:Boolean = false, cancelable:Boolean = false) 
 		{ 
 			super(type, bubbles, cancelable);
 		} 
