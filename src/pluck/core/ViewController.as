@@ -110,6 +110,8 @@ package pluck.core
 			_notificationMap.unregister(_root)
 			_root.onUnregister()
 			_root.dispose()
+			const rootModel:*= _root._model
+			if (rootModel && 'dispose'in rootModel) rootModel.dispose()
 			_root = null
 		}
 		
@@ -121,9 +123,10 @@ package pluck.core
 		{
 			// removes the view from the display list
 			if(_view.parent && _view.parent.contains(_view))
-				_view.parent.removeChild(_view)		
-			_view.dispose()
+				_view.parent.removeChild(_view)					
 			dispose()
+			_view.dispose()
+			if (_model && 'dispose' in _model) _model.dispose()
 			_view = null
 			_model = null
 		}

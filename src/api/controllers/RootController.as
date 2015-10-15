@@ -22,7 +22,6 @@ package api.controllers
 		{
 			super(documentClass)
 			view.exitButton.addEventListener(MouseEvent.CLICK, onExitClick)
-			autoDispose = false
 		}
 		
 		override public function onRegister():void 
@@ -104,7 +103,6 @@ package api.controllers
 		{
 			super.dispose();
 			view.exitButton.removeEventListener(MouseEvent.CLICK, onExitClick)
-			model.dispose()
 		}
 		
 		private function get view():Pluck { return _view as Pluck; }
