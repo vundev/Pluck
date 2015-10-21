@@ -8,6 +8,7 @@ package pluck.utils
 	{
 		public final function serialize(withObject:Object):ISerializable
 		{
+			if (withObject == null) return null
 			const clone:Object = ClassUtils.clone(this)
 			for (var name:String in clone) 
 			{
