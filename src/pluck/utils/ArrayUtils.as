@@ -67,7 +67,7 @@ package pluck.utils
 			const length:uint = array.length
 			for (var i:int = 0; i < length; i++) 
 			{
-				if (array[i] is Array) flattened.concat(flatten(array[i]))
+				if (array[i] is Array) flattened = flattened.concat(flatten(array[i]))
 				else flattened.push(array[i])
 			}
 			return flattened
