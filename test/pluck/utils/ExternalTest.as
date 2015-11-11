@@ -33,7 +33,8 @@ package pluck.utils  {
 						data:[1, 2]
 					}
 				},
-				skipped:'skipped'
+				skipped:'skipped',
+				vector:[ { name:'item1' }, { name:'item2' } ]
 			};
 			const serializedMessage:Message = new Message();
 			serializedMessage.serialize(message);
@@ -42,6 +43,8 @@ package pluck.utils  {
 			assertEquals(serializedMessage.complex.subCommand, message.complex.subCommand)
 			assertEqualsArrays(serializedMessage.complex.subComplex.data, message.complex.subComplex.data)
 			assertEquals(serializedMessage.doesNotParticipate, 'doesNotParticipate')
+			assertEquals(serializedMessage.vector[0].name, 'item1')
+			assertEquals(serializedMessage.vector[1].name, 'item2')
 		}
     }
 }

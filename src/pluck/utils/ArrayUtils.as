@@ -1,5 +1,7 @@
 package pluck.utils 
 {
+	import flash.utils.getQualifiedClassName
+	import flash.utils.getDefinitionByName
 	/**
 	 * ...
 	 * @author Atanas Vasilev at avant.vasilev@gmail.com
@@ -63,7 +65,7 @@ package pluck.utils
 		
 		static public function flatten(array:Array):Array 
 		{
-			const flattened:Array = new Array()
+			var flattened:Array = new Array()
 			const length:uint = array.length
 			for (var i:int = 0; i < length; i++) 
 			{
@@ -81,6 +83,43 @@ package pluck.utils
 			for each (var item:* in array) 
 				length++
 			return length
+		}
+		
+		public static function randomFromArray(amount:uint, array:Array):Array
+		{
+			if (amount > array.length)
+				throw new Error('Amount of random elements must be less then or equals to the array length.')
+			const result:Array = []
+			const copy:Array = array.concat()
+			const length:uint = copy.length
+			var counter:uint
+			for (var i:int = 0; i < length; i++) 
+			{
+				if (counter < amount) {					
+					result.push(copy.splice(Math.floor(Math.random() * copy.length), 1)[0])
+					counter++
+				}				
+			}
+			return result
+		}
+		
+		public static function integersTo(n:uint, start:int = 0):Array
+		{
+			const result:Array = []
+			for (var i:int = 0; i < n; i++) 
+				result[i] = i + start
+			return result
+		}
+		
+		public static function isVector(v:*):Boolean
+		{
+			return (v as Vector.<*>) is Vector.<*>
+		}
+		
+		public static function getVectorType(v:*):Class
+		{
+			const vectorName:String = getQualifiedClassName(v)			
+			return getDefinitionByName(vectorName.substring(21, vectorName.length - 1)) as Class;
 		}
 	}
 

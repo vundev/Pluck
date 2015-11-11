@@ -11,6 +11,7 @@ package pluck.utils
 		public var complex:MessageComplex
 		/** This is a key which is not serialized. **/
 		public var doesNotParticipate:String = 'doesNotParticipate';
+		public var vector:Vector.<VectorItem> = new Vector.<VectorItem>()
 		
 		public function Message(command:String = null, complex:MessageComplex = null) 
 		{
