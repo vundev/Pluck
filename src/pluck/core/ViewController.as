@@ -113,6 +113,8 @@ package pluck.core
 			const rootModel:*= _root._model
 			if (rootModel && 'dispose'in rootModel) rootModel.dispose()
 			_root = null
+			_controllerMap = null
+			_notificationMap = null
 		}
 		
 		/**

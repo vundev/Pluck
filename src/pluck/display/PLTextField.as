@@ -6,6 +6,7 @@ package pluck.display
 	import pluck.core.RootModel;
 	import pluck.events.LanguageEvent
 	import pluck.core.ViewController
+	import flash.text.TextFormat
 	
 	/**
 	 * ...
@@ -63,6 +64,31 @@ package pluck.display
 				return value && value.length() ? value[0] : 'not translated' 
 			}
 			return value
+		}
+		
+		private function stretch(prop:String, max:Number):void
+		{
+			if (max <= 0) return;
+			const format:TextFormat = this.getTextFormat()
+			while (this[prop] < max) {
+				format.size = int(format.size) + 1
+				this.setTextFormat(format)
+			}
+			while (this[prop] > max) {
+				format.size = int(format.size) - 1
+				this.setTextFormat(format)
+			}
+		}
+		
+		public function constrain(w:Number, h:Number):PLTextField
+		{
+			const ratio:Number = this.width / this.height
+			if ((w / h) < ratio) {
+				stretch('width', w)
+			}else {
+				stretch('height', h)
+			}
+			return this
 		}
 	}
 
