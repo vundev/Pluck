@@ -1,6 +1,7 @@
 package pluck.utils 
 {
 	import flash.utils.getQualifiedClassName
+	import pluck.utils.ArrayUtils
 	/**
 	 * ...
 	 * @author Atanas Vasilev at avant.vasilev@gmail.com
@@ -29,6 +30,16 @@ package pluck.utils
 			for (name in this) if (this[name] != other[name]) return false
 			for (name in other) if (other[name] != this[name]) return false
 			return true
+		}
+		
+		public function toString():String{
+			var out:Array = new Array()
+			for (var name:String in this) {
+				var item:String
+				if (this[name] is Array) out.push(name + ': ' + ArrayUtils.print(this[name] as Array));
+				else out.push(name + ': ' + (getQualifiedClassName(this[name]) === "Object" ? new Hash(this[name]).toString() : this[name]))
+			}
+			return '{'+out.join(', ')+'}'
 		}
 		
 	}

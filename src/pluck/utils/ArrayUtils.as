@@ -121,6 +121,27 @@ package pluck.utils
 			const vectorName:String = getQualifiedClassName(v)			
 			return getDefinitionByName(vectorName.substring(21, vectorName.length - 1)) as Class;
 		}
+		
+		/**
+		 * The best way to print arrays with commas and braces (deals with multi-arrays like a charm).
+		 * @param	array
+		 * @return
+		 */
+		public static function print(array:Array):String
+		{
+			var output:String = '';
+			const length:uint = array.length
+			for (var i:int = 0; i < length; i++) 
+			{
+				var comma:String = i == length - 1 ? '' : ',';
+				var element:* = array[i]
+				if (element is Array) output += print(element) + comma
+				else if (getQualifiedClassName(element) === "Object")
+					output += new Hash(element).toString() + comma;
+				else output += element + comma
+			}
+			return '[' + output + ']';
+		}
 	}
 
 }
