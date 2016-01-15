@@ -14,6 +14,7 @@ package pluck.display
 	 */
 	public class PLTextField extends TextField implements IDisposable
 	{
+		public static const MIN_FONT_SIZE:uint = 4;
 		private var _rootModel:RootModel 
 		private var _mText:XMLList
 		public var onLanguageChangeCompletion:Function
@@ -75,6 +76,7 @@ package pluck.display
 				this.setTextFormat(format)
 			}
 			while (this[prop] > max) {
+				if (format.size == MIN_FONT_SIZE) break;
 				format.size = int(format.size) - 1
 				this.setTextFormat(format)
 			}
