@@ -42,6 +42,15 @@ package pluck.utils
 			return '{'+out.join(', ')+'}'
 		}
 		
+		public function withoutKeys(...arguments):Hash {
+			var keys:Array = arguments[0] is Array ? arguments[0] : arguments
+			var h:Hash = new Hash()
+			for(var name:String in this){
+				if(keys.indexOf(name) < 0)h[name] = this[name]
+			}			
+			return h
+		}
+		
 	}
 
 }
