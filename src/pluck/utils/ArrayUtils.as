@@ -142,6 +142,11 @@ package pluck.utils
 			}
 			return '[' + output + ']';
 		}
+		
+		public static function printArrayOfComplex(array:Array):String
+		{
+			return array.map(function(e:*, i:int, a:Array):String { return JSON.stringify(e) } ).join(',\n')
+		}
 	}
 
 }
