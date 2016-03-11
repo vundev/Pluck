@@ -34,6 +34,12 @@ package pluck.core
 			return this
 		}
 		
+		public function swap(c1:DisplayObjectController, c2:DisplayObjectController):void
+		{
+			if (c1._view.parent && c1._view.parent == c2._view.parent) 
+				c1._view.parent.swapChildren(c1._view, c2._view)
+		}
+		
 		/**
 		 * Check if there are initial properties for the view set before its creation, if so the calling of this method after view's creation will
 		 * update those properties of the view. If there are no initial attrs to be set later this method will do nothing.
