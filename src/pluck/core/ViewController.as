@@ -20,6 +20,7 @@ package pluck.core
 		private var _children:Vector.<ViewController> = new Vector.<ViewController>()
 		private var _parent:ViewController
 		private var _autoDispose:Boolean = true
+		public var acceptNotifications:Boolean = true;
 		
 		public function ViewController(view:View = null, model:Object = null, name:String = null)
 		{
@@ -41,8 +42,10 @@ package pluck.core
 			// use copy of the map to prevent from for-each problems just in case when a controller is unregistered; 
 			// must not delete keys while iterrating through an associative array;
 			const controllerMap:Object = ClassUtils.clone(_controllerMap, false)
-			for each (var item:ViewController in controllerMap) 
-				item.handleNotification(notification)
+			for each (var item:ViewController in controllerMap) {
+				if(item.acceptNotifications)
+					item.handleNotification(notification)
+			}
 		}
 	
 		public function onRegister():void { }

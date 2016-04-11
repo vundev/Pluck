@@ -49,8 +49,10 @@ package pluck.core
 			if (recipients) {
 				recipients = recipients.concat()
 				const length:uint = recipients.length
-				for (var i:int = 0; i < length; i++) 
-					recipients[i].handleNotification(notification)
+				for (var i:int = 0; i < length; i++) {
+					if(recipients[i].acceptNotifications)
+						recipients[i].handleNotification(notification)
+				}
 			}			
 		}
 		
